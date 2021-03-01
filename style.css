@@ -1,0 +1,15 @@
+#text-input {
+    width: 70%;
+    height: 20vh;
+    display: block;
+    margin: 1rem;
+    padding: 1rem;
+    position: absolute;
+    left: 11%;
+}
+
+#app-but {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+}
