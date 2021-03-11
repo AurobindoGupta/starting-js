@@ -3,14 +3,31 @@
 // var username= prompt("Give me your name?");
 // alert("hahah"+username);
 var btn = document.querySelector("#app-but");
-var textinput = document.querySelector("#text-input");
-console.log(textinput);
-btn.addEventListener("click", clickHandler);
+var textInput = document.querySelector("#text-input");
+var textOutput = document.querySelector("#text-output");
+console.log(textInput);
+var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json"
+
+function getTransalationURL(text){
+    return serverURL + "?"+ "text=" + text ;
+}
+function errorHndler(error){
+    console.log("error handler", error);
+    alert("Stuff not doing well back here.. wait");
+}
+
 
 function clickHandler() {
     {
         console.log("clicked");
-        console.log("input ye hoa", textinput.value);
+        console.log("input ye hoa", textInput.value);
+        var input_text = textInput.value; //taking input
+
+
+        fetch(getTransalationURL(input_text))
+        .then(response => response.json())
+        .then(json => console.log(json.contents.translated))
+        .catch(errorHndler)
 
 
 
@@ -18,3 +35,4 @@ function clickHandler() {
 
 
 }
+btn.addEventListener("click", clickHandler);
