@@ -6,12 +6,14 @@ var btn = document.querySelector("#app-but");
 var textInput = document.querySelector("#text-input");
 var textOutput = document.querySelector("#text-output");
 console.log(textInput);
-var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json"
+// var serverURL = "https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json"
+var serverURL = "https://api.funtranslations.com/translate/minion.json";
 
-function getTransalationURL(text){
-    return serverURL + "?"+ "text=" + text ;
+function getTransalationURL(text) {
+    return serverURL + "?" + "text=" + text;
 }
-function errorHndler(error){
+
+function errorHndler(error) {
     console.log("error handler", error);
     alert("Stuff not doing well back here.. wait");
 }
@@ -25,9 +27,13 @@ function clickHandler() {
 
 
         fetch(getTransalationURL(input_text))
-        .then(response => response.json())
-        .then(json => console.log(json.contents.translated))
-        .catch(errorHndler)
+            .then(response => response.json())
+            .then(json => {
+                var traslatedText = json.contents.translated;
+                textOutput.innerText = traslatedText;
+                console.log(json.contents.translated)
+            })
+            .catch(errorHndler)
 
 
 
